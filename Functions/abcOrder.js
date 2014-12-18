@@ -7,4 +7,4 @@ function abcOrder(txt) {
 		console.log("Please input only letters");
 	}
 }
-abcOrder("Wordadsfklasjfdkjfalsfdjagagdhajkfhdsalsfhaj");
+abcOrder("Webmaster");
