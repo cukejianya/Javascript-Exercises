@@ -1,4 +1,3 @@
-
 function reverseNum () {
     var num = 30040203402;
     //console.log(num);
