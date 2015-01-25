@@ -1,3 +1,6 @@
+//We use the Heron's Formula to calulate the triangle given the sides of the
+//triangle
+
 function triangleArea (a, b, c) {
 	var p = (a + b + c)/2; // p is half of the the triangle's parameter
 	var A = Math.sqrt(p*(p-a)*(p-b)*(p-c));
