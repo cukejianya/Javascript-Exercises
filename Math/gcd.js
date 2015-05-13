@@ -1,16 +1,28 @@
 function gcd(a, b) {
-  a = Math.max(a, b);
-  b = Math.min(a, b);
-  if ((a || b) === 0) {
-    return a;
-  } else {
-    while (a > 0) {
-      c = a;
-      a = b%a;
-      b = c;
+
+  a = Math.abs(a);
+  b = Math.abs(b);
+
+  x = Math.max(a, b);
+  y = Math.min(a, b);
+
+  if ((x || y) === 0) {
+    if (x === y) {
+      return undefined;
+    } else {
+      return x;
     }
-    return b;
+  } else {
+    while (x > 0) {
+      c = x;
+      x = y%x;
+      y = c;
+    }
+    return y;
   }
 }
 
-console.log(gcd(30,25));
+a = parseInt(process.argv.slice(2));
+b = parseInt(process.argv.slice(3));
+
+console.log(gcd(a, b));
