@@ -1,0 +1,16 @@
+{
+  "name": "Programs",
+  "version": "1.0.0",
+  "description": "My personal programs",
+  "main": "clicker.js",
+  "dependencies": {
+    "moment": "^2.10.3",
+    "mongodb": "~2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": " (Chinedum Ukejianya)",
+  "license": "ISC"
+}
