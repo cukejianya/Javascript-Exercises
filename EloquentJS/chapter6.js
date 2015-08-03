@@ -1,4 +1,4 @@
-// Methods
+console.log('Section | Methods');//-------------------
 function speak(line) {
   console.log("The " + this.type + " rabbit says '" +
               line + "'");
@@ -10,7 +10,7 @@ var fatRabbit = {type: "fat", speak: speak};
 speak.apply(fatRabbit, ['Burp!']); //Arguments are arrays for apply
 speak.call(whiteRabbit, "Oh my."); //Arguments are regular for call
 
-// Constructors
+console.log('Section | Constructors');//-------------------
 function Rabbit(type) {
   this.type = type;
   this.speak = function(line) {
@@ -21,7 +21,7 @@ function Rabbit(type) {
 var killerRabbit = new Rabbit('killer');
 killerRabbit.speak("Die");
 
-//Prototype
+console.log('Section | Prototype');//-------------------
 // Objects have to type of properties: Enumerable and Nonenumerable.
 //Not taking to account the above statement.
 map = {
@@ -52,7 +52,49 @@ console.log(map.hasOwnProperty('pizza')); //true
 var map = Object.create(null);
 console.log("toString" in map); //false. There are not prototypes
 
-//Setters and Getters
+console.log('Section | Laying Out a Table');//-------------------
+
+function rowHeights(rows) {
+  return rows.map(function(row){
+    return row.reduce(function(max, cell) {
+        return Math.max(max, cell.minHeight());
+    }, 0);
+  });
+}
+
+function colWidths(rows) {
+  return rows[0].map(function(_, i) {
+    return rows.reduce(function(max, row) {
+      return Math.max(max, row[i].minWidth());
+    });
+  });
+}
+
+//To Draw Table
+
+function drawTable(rows) {
+  var heights = rowHeights(rows);
+  var widths = colWidths(rows);
+
+  function drawLine(blocks, lineNo) {
+    return blocks.map( function(block) {
+      return block[lineNo];
+    }).join(' ');
+  }
+}
+
+function drawRow(row, rowNum) {
+  var blocks = row.map( function(cell, colNum) {
+    return cell.draw(widths[colNum], heights[rowNum]);
+  });
+  return blocks[0].map(function(_, lineNo) {
+    return drawLine(blocks, lineNo);
+  }
+
+  return rows.map(drawRow).join("\n")
+}
+
+console.log('Section | Setters and Getters');//-------------------
 
 var pile = {
   elements: ["eggshell", "orange peel", "worm"],
