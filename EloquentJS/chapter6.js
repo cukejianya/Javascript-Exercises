@@ -142,6 +142,8 @@ for (var i = 0; i < 5; i++) {
   rows.push(row);
 }
 console.log('Before drawtable\n'+rows);
+debugger;
+
 console.log('After drawtable\n'+drawTable(rows));
 //---end of checkboard
 
@@ -165,11 +167,7 @@ function dataTable(data) {
   var body = data.map(function(row) {
     return keys.map(function(name) {
       var value = row[name];
-      if (typeof value == "number")
-        return new RTextCell(String(value));
-      else {
-        return new TextCell(String(value));
-      }
+      return new TextCell(String(value));
     });
   });
   return [headers].concat(body);
@@ -200,7 +198,7 @@ function RTextCell(text) {
   TextCell.call(this, text);
 }
 RTextCell.prototype = Object.create(TextCell.prototype);
-RtextCell.prototype.draw = function(width, height) {
+RTextCell.prototype.draw = function(width, height) {
   var result = [];
   for (var i = 0; i < height; i++) {
     var line = this.text[i] || "";
@@ -208,3 +206,27 @@ RtextCell.prototype.draw = function(width, height) {
   }
   return result;
 };
+
+function dataTable2(data) {
+  var keys = Object.keys(data[0]);
+  var headers = keys.map(function(name) {
+    return new UnderlinedCell(new TextCell(name));
+  });
+  var body = data.map(function(row) {
+    return keys.map(function(name) {
+      var value = row[name];
+      if (typeof value == "number")
+        return new RTextCell(String(value));
+      else {
+        return new TextCell(String(value));
+      }
+    });
+  });
+  return [headers].concat(body);
+}
+console.log(drawTable(dataTable2(mountains)));
+
+console.log('\nSection | Instance Of');//-------------------
+console.log("RTextCell(A) is a instance of RTextCell\n"+ (new RTextCell("A") instanceof RTextCell) );
+console.log("RTextCell(A) is a instance of TextCell\n"+(new RTextCell("A") instanceof TextCell) );
+console.log("TextCell(A) is a instance of RTextCell\n"+(new TextCell("A") instanceof RTextCell) );
