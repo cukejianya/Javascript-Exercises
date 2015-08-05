@@ -142,7 +142,6 @@ for (var i = 0; i < 5; i++) {
   rows.push(row);
 }
 console.log('Before drawtable\n'+rows);
-debugger;
 
 console.log('After drawtable\n'+drawTable(rows));
 //---end of checkboard
@@ -253,8 +252,8 @@ Vector.prototype.minus = function (otherVector) {
 };
 
 Object.defineProperty( Vector.prototype, 'length', {
-  get: function() { return Math.sqrt(this.x*this.x + this.y*this.y) }
-})
+  get: function() { return Math.sqrt(this.x*this.x + this.y*this.y); }
+});
 
 
 console.log(new Vector(1, 2).plus(new Vector(2, 3)));
@@ -275,13 +274,13 @@ function StretchCell(inner, width, height) {
 
 StretchCell.prototype.minWidth = function () {
   return Math.max(this.inner.minWidth(), this.wid);
-}
+};
 StretchCell.prototype.minHeight = function () {
-  return Math.max(this.inner.minHeight(), this.hgt)
-}
+  return Math.max(this.inner.minHeight(), this.hgt);
+};
 StretchCell.prototype.draw = function(width, height) {
   return this.inner.draw(width, height-1).concat([repeat(' ', width)]);
-}
+};
 
 var sc = new StretchCell(new TextCell("abc"), 1, 2);
 console.log(sc.minWidth());
@@ -315,10 +314,10 @@ function ArraySeq(array) {
 }
 ArraySeq.prototype.next = function() {
   this.pos++;
-}
+};
 ArraySeq.prototype.current = function() {
   return this.array[this.pos];
-}
+};
 
 function RangeSeq(start, end) {
   this.curr = start;
@@ -330,10 +329,10 @@ RangeSeq.prototype.next = function() {
   } else {
     this.curr = false;
   }
-}
+};
 RangeSeq.prototype.current = function() {
   return this.curr;
-}
+};
 
 logFive(new ArraySeq([1, 2]));
 // → 1
