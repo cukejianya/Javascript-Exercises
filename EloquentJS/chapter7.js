@@ -50,7 +50,7 @@ var directions = {
   'sw': new Vector(-1, 1),
   'w': new Vector(-1, 0),
   'nw': new Vector(-1, -1)
-}
+};
 
 function randomElement(array) {
   return array[Math.floor(Math.random() * array.length)];
@@ -60,7 +60,7 @@ var directionNames = "n ne e se s sw w nw".split(' ');
 
 function BouncingCritter() {
   this.direction = randomElement(directionNames);
-};
+}
 BouncingCritter.prototype.act = function(view) {
   if (view.look(this.direction) !=" ")
     this.direction = view.find(' ') || 's';
@@ -87,7 +87,7 @@ function World(map, legend) {
 }
 
 function charFromElement(element) {
-  if (element == null) {
+  if (element === null) {
     return " ";
   } else {
     return element.originChar;
@@ -104,10 +104,19 @@ World.prototype.toString = function() {
     output += "\n";
   }
   return output;
-}
-function Wall() {};
+};
+function Wall() {}
 
 module.exports = new World(plan, {"#": Wall, "o": BouncingCritter});
 
 var world = new World(plan, {"#": Wall, "o": BouncingCritter});
 console.log(world.toString());
+
+var test = {
+  prop: 10,
+  addPropTo: function(array) {
+    return array.map( function(elt) {
+      return this.prop + elt;
+    }, this);
+  }
+};
