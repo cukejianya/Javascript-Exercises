@@ -154,7 +154,7 @@ World.prototype.letAct = function(critter, vector) {
   }
 };
 
-World.prototype.checkDestination = function( action, vector) {
+World.prototype.checkDestination = function(action, vector) {
   if (directions.hasOwnProperty(action.direction)) {
     var dest = vector.plus(directions[action.direction]);
     if (this.grid.isInside(dest))
