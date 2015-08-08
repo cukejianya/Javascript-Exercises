@@ -161,3 +161,49 @@ World.prototype.checkDestination = function(action, vector) {
       return dest;
   }
 };
+
+function View(world, vector) {
+  this.world = world;
+  this.vector = vector;
+}
+View.prototype.look = function(dir) {
+  var target = this.vector.plus(directions[dir]);
+  if (this.world.grid.isInside(target)) {
+    return charFromElement(this.world.grid.get(target));
+  } else {
+    return '#';
+  }
+}
+View.prototype.findAll = function(ch) {
+  var found = [];
+  for (var dir in directions)
+    if (this.look(dir) == ch)
+      found.push(dir);
+  return found;
+}
+View.prototype.find = function(ch) {
+  var found = this.findAll(ch);
+  if (found.length == 0) return null;
+  return randomElement(found);
+};
+for ( var i = 0; i < 5; i++) {
+  world.turn();
+  console.log(world.toString());
+}
+function dirPlus(dir, n) {
+  var index = directionNames.indexOf(dir);
+  return directionNames[(index + n+ 8) % 8];
+}
+function WallFollower() {
+  this.dir = 's';
+}
+WallFollower.prototype.act = function(view) {
+  var start = this.dir;
+  if (view.look(dirPlus(this.dir, -2)) != ' ')
+    start = this.dir = dirPlus(this.dir, -2);
+  while (view.look(this.dir) !=' ') {
+    this.dir = dirPlus(this.dir, 1);
+    if (this.dir == start) break;
+  }
+  return {type: 'move', direction: this.dir};
+};
