@@ -4,7 +4,7 @@ function Person(name) { this.name = name;}
 var ferdinand = Person("Ferdinand"); //Forgot new. Thus this.name is global
 console.log(name);
 
-"use strict";
+//"use strict";
 function  Person(name) { this.name = name; }
 var ferdinand = Person("Ferdinand");
 // → TypeError: Cannot set property 'name' of undefined.
@@ -53,4 +53,85 @@ try {
   console.log('You see', look());
 } catch (error) {
   console.log('Something went wrong: ' + error);
+}
+
+console.log('\nSection | Cleaning Up After Exceptions');//-------------------
+var context = null;
+
+function withContextWrongWay(newContext, body) {
+  var oldContext = context;
+  context = newContext;
+  var result = body(); //if body() throws exception context will not be set back to oldContext
+  context = oldContext;
+  return result;
+}
+
+function withContext(newContext, body) {
+  var oldContext = context;
+  context = newContext;
+  try {
+    return body();
+  } finally {
+    context = oldContext;
+  }
+}
+
+try {
+
+  withContext(5, function() {
+    if (context < 10)
+      throw new Error('Not enough context!');
+  });
+
+} catch (e) {
+
+  console.log('Ignoring: ' + e);
+}
+// --> Ignoring: Error: Not enough context!
+
+console.log(context);
+// --> null
+
+console.log('\nSection | Selective Catching');//-------------------
+
+// for (;;) {
+//   try {
+//     var dir = promtDirection('Where?'); // <- typo! Misspelled prompt
+//     console.log('You chose ', dir);
+//     break;
+//   } catch (e) {
+//     console.log('Not a valid direction. Try again.');
+//   }
+// }
+
+function InputError(message) {
+  this.message = message;
+  this.stack = (new Error()).stack;
+}
+InputError.prototype = Object.create(Error.prototype);
+InputError.prototype.name = 'InputError';
+
+var prompt = require('prompt');
+
+prompt.start();
+
+function promptDirection(question) {
+  var result = prompt(question, '');
+  if (result.toLowerCase() == 'left') return 'L';
+  if (result.toLowerCase() == 'right') return 'R';
+  throw new InputError("Invalid direction: " + result);
+}
+
+for (;;) {
+  try {
+    var dir = promptDirection('Where?');
+    console.log('You chose ', dir);
+    break;
+  } catch(e) {
+    if (e instanceof InputError)
+      console.log('Not a valid direction. Try again.');
+    else {
+      throw e;
+    }
+  }
 }
