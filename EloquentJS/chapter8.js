@@ -111,12 +111,13 @@ function InputError(message) {
 InputError.prototype = Object.create(Error.prototype);
 InputError.prototype.name = 'InputError';
 
-var prompt = require('prompt');
-
-prompt.start();
+// var prompt = require('prompt');
+//
+// prompt.start();
 
 function promptDirection(question) {
-  var result = prompt(question, '');
+  //var result = prompt(question, '');
+  var result = 'up';
   if (result.toLowerCase() == 'left') return 'L';
   if (result.toLowerCase() == 'right') return 'R';
   throw new InputError("Invalid direction: " + result);
@@ -128,10 +129,18 @@ for (;;) {
     console.log('You chose ', dir);
     break;
   } catch(e) {
-    if (e instanceof InputError)
+    if (e instanceof InputError) {
       console.log('Not a valid direction. Try again.');
-    else {
+      break;
+    } else {
       throw e;
     }
   }
 }
+
+console.log('\nSection | Assertions');//-------------------
+
+function AssertionFailed(message) {
+  this.message = message;
+}
+AssertionFailed.prototype = Object.create(Error.prototype);
