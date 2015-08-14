@@ -144,3 +144,67 @@ function AssertionFailed(message) {
   this.message = message;
 }
 AssertionFailed.prototype = Object.create(Error.prototype);
+
+function assert(test, message) {
+  if (!test)
+    throw new AssertionFailed(message);
+}
+
+function lastElement(array) {
+  assert(array.length > 0, 'empty array in lastElement');
+  return array[array.length -1];
+}
+
+console.log('\nSection | Assertions');//-------------------
+
+
+// ------Questions-----
+var question = '\nQuestion 1 - Retry';
+//Say you have a function primitiveMultiply that, in 50 percent of cases, multiplies two numbers and in the other 50 percent raises an exception of type MultiplicatorUnitFailure. Write a function that wraps this clunky function and just keeps trying until a call succeeds, returning the result. Make sure you handle only the exceptions you are trying to handle.
+console.log(question);
+
+function MultiplicatorUnitFailure(message) {
+  this.message = message;
+  this.stack = (new Error()).stack;
+}
+
+MultiplicatorUnitFailure.prototype = new Object(Error.prototype);
+MultiplicatorUnitFailure.prototype.name = 'MultiplicatorUnitFailure';
+
+function primtiveMultiply(x, y) {
+  var percentage = Math.random()*5;
+  if (percentage < 1) {
+    return x*y;
+  } else {
+    throw new MultiplicatorUnitFailure('The system crashed');
+  }
+}
+
+for(;;) {
+  try {
+    var product = primtiveMultiply(4,5);
+    console.log(product);
+    break;
+  } catch(e) {
+    if (e instanceof MultiplicatorUnitFailure) {
+      console.log('Error! Error! Need to multiply again.');
+    }
+  }
+}
+
+
+
+var question = '\nQuestion 2 - The Locked Box';
+////Consider the following (rather contrived) object:
+var box = {
+  locked: true,
+  unlock: function() { this.locked = false; },
+  lock: function() { this.locked = true; },
+  _content: [],
+  get content () {
+    if (this.locked) throw new Error("Locked!");
+    return this._content; }
+};
+//It is a box, with a lock. Inside is an array, but you can get at it only when the box is unlocked. Directly accessing the _content property is not allowed.
+//Write a function called withBoxUnlocked that takes a function value as argument, unlocks the box, runs the function, and then ensures that the box is locked again before returning, regardless of whether the argument function returned normally or threw an exception.
+console.log(question);
