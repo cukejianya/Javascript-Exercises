@@ -172,7 +172,7 @@ MultiplicatorUnitFailure.prototype = new Object(Error.prototype);
 MultiplicatorUnitFailure.prototype.name = 'MultiplicatorUnitFailure';
 
 function primtiveMultiply(x, y) {
-  var percentage = Math.random()*5;
+  var percentage = Math.random()*2;
   if (percentage < 1) {
     return x*y;
   } else {
@@ -203,8 +203,22 @@ var box = {
   _content: [],
   get content () {
     if (this.locked) throw new Error("Locked!");
-    return this._content; }
+    return this._content; },
+  withBoxUnlocked: function (f) {
+    this.locked = false;
+
+  }
 };
+
 //It is a box, with a lock. Inside is an array, but you can get at it only when the box is unlocked. Directly accessing the _content property is not allowed.
 //Write a function called withBoxUnlocked that takes a function value as argument, unlocks the box, runs the function, and then ensures that the box is locked again before returning, regardless of whether the argument function returned normally or threw an exception.
 console.log(question);
+
+function withBoxUnlocked(f) {
+  box.unlock();
+  try {
+    f.call();
+  } finally {
+    box.lock();
+  }
+}
