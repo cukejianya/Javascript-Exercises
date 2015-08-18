@@ -1,16 +1,16 @@
-console.log('\nSection | Creating A Regular Expression');//-------------------
+console.log('\nSection 2| Creating A Regular Expression');//-------------------
 
 var re1 = new RegExp("abc");
 var re2 = /[abc]/;
 
-console.log('\nSection | Testing For Matches');//-------------------
+console.log('\nSection 3 | Testing For Matches');//-------------------
 
 console.log(re1.test("abcde")); //true
 console.log(re1.test("edabc")); //true
 console.log(re1.test("abxde")); //false
 console.log(re1.test("edcba")); //false
 
-console.log('\nSection | Matching A Set Of Characters');//-------------------
+console.log('\nSection 4 | Matching A Set Of Characters');//-------------------
 
 //Any characters within brackets makes the regular expression see if any of characters matches in an expression tested
 // Periods and other special characters loses their special meaning within square brackets
@@ -34,7 +34,7 @@ console.log("1100100010100110 is not a binary: "+notBinary.test("110010001010011
 
 console.log("1100100010200110 is not a binary: "+notBinary.test("1100100010200110"));
 
-console.log('\nSection | Repeating Parts Of A Pattern');//-------------------
+console.log('\nSection 5 | Repeating Parts Of A Pattern');//-------------------
 
 // (+) allows you to match repeated characters
 // (*) allows the same thing as well as zero matches
