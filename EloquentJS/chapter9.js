@@ -52,3 +52,44 @@ console.log(neighbor.test("neighbor"));
 
 var dateTime = /\d{1,2}-\d{1,2}-\d{4} \d{1,2}:\d{2}/;
 console.log(dateTime.test("30-1-2003 8:45")); //true
+
+console.log('\nSection 6 | Grouping Subexpressions');//-------------------
+
+//Paranthesis makes everything in it one thing and (i) after the expression ingores cases
+var cartoonCrying = /boo+(hoo+)+/i;
+console.log(cartoonCrying.test("Boohoooohoohooo")); //true
+
+console.log('\nSection 7 | Matches And Groups');//-------------------
+
+var match = /\d/.exec("one two 100");
+console.log(match); //[ '1', index: 8, input: 'one two 100' ]
+
+match = /\d+/.exec("one two 100");
+console.log(match); //["100"]
+console.log(match.index); // 8
+
+// String's match method
+console.log("one two 100".match(/two/));
+
+var quotedText = /'([^']*)'/;
+console.log(quotedText.exec("she said 'hello' "));
+
+console.log('\nSection 9 | Word And String Boundaries');//-------------------
+
+// \b is a word boundary
+console.log(/cat/.test("concatenate"));
+console.log(/\bcat\b/.test("cat"));
+console.log(/\bcat\b/.test("con cat enate"));
+console.log(/\bcat\b/.test("concatenate"));
+
+console.log('\nSection 10 | Choice Patterns');//-------------------
+
+var animalCount = /\b\d+ (pig|cow|chicken)s?\b/;
+console.log(animalCount.test("15 pigs")); //true
+console.log(animalCount.test("1549 chicken")); //true
+console.log(animalCount.test("10000 cows")); //true
+console.log(animalCount.test("15 pigcows")); //false
+
+console.log('\nSection 11 | Choice Patterns');//-------------------
+
+var numbers = /\b([01]+b|\d+|[\da-f]h)\b/;
