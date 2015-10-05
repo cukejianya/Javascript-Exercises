@@ -26,14 +26,14 @@ function timer(time) {
     hr = parseInt(time[0]);
     min = parseInt(time[1]);
     sec = parseInt(time[2]);
-    msec = 1000
+    msec = 100
 
     //console.log(hr+' '+min+' '+sec);
     var go = setInterval(function() {
         process.stdout.clearLine();
         process.stdout.cursorTo(0);
-        msec -= 10
-        process.stdout.write(hr.pad()+":"+min.pad()+":"+sec.pad()+":"+msec.pad("0", 4));
+        msec -= 1
+        process.stdout.write(hr.pad()+":"+min.pad()+":"+sec.pad()+":"+msec.pad());
         if (msec < 1) {
             if (sec < 1) {
                 if (min < 1) {
@@ -50,7 +50,7 @@ function timer(time) {
                 }
             } else {
                 sec--;
-                msec = 1000;
+                msec = 100;
             }
         }
     }, 10);
