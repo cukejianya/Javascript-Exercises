@@ -1,25 +1,28 @@
 function primeFactor(num) {
 
-  var primeList = [];
+  var primeFactorList = [];
   var factor = 2;
   var maxFactor = Math.ceil(Math.sqrt(num));
+  var primeList = require("./sieveOfEratosthenes.js");
+
+  primeList = primeList(maxFactor);
 
   var check = function() {
     while (num%factor === 0) {
-      primeList[primeList.length] = factor;
+      primeFactorList.push(factor);
       num = num/factor;
     }
   };
 
   check();
   factor++;
-  while(factor < maxFactor) {
+ for (var factor = 3; factor < maxFactor; factor) {
     check();
     factor += 2;
   }
   if (num > 1)
-  primeList[primeList.length] = num;
-  return primeList;
+  primeFactorList[primeFactorList.length] = num;
+  return primeFactorList;
 }
 
 console.log(primeFactor(process.argv.slice(2)));
