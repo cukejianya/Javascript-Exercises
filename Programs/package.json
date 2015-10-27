@@ -4,6 +4,7 @@
   "description": "My personal programs",
   "main": "clicker.js",
   "dependencies": {
+    "intruder": "^0.2.0",
     "moment": "^2.10.3",
     "mongodb": "~2.0"
   },
