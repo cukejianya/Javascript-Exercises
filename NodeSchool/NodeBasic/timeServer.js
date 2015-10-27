@@ -16,7 +16,6 @@ var server = net.createServer(function (socket) {
     }
   }
   dateStr = dateArr.join('')+'\n';
-  socket.write(dateStr);
-  socket.end(dateStr)
+  socket.end(dateStr);
 })
 server.listen(process.argv[2]);
