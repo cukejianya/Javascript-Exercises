@@ -22,7 +22,10 @@ function gcd(a, b) {
   }
 }
 
-a = parseInt(process.argv.slice(2));
-b = parseInt(process.argv.slice(3));
+module.exports = gcd;
 
-console.log(gcd(a, b));
+if (process.argv[2] = 'run') {
+  a = parseInt(process.argv.slice(2));
+  b = parseInt(process.argv.slice(3));
+  console.log(gcd(a, b));
+}

@@ -1,6 +1,7 @@
+var get = require("./sieveOfEratosthenes.js");
+
 function primeFactor(num) {
     var primeFactorList = [];
-    var get = require("./sieveOfEratosthenes.js");
     var prime;
     var primeList = get.findAllPrimes(num);
 
@@ -18,4 +19,6 @@ function primeFactor(num) {
     return primeFactorList;
 }
 
-console.log(primeFactor(process.argv.slice(2)));
+console.log("Prime Factorization:",primeFactor(process.argv.slice(2)));
+
+exports = primeFactor;
