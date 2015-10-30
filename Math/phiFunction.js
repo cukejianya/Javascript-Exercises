@@ -1,4 +1,3 @@
-var num = parseInt(process.argv[2]);
 var gcd = require('./gcd');
 
 function phiFunction(num) {
@@ -11,8 +10,11 @@ function phiFunction(num) {
   return rrsModulo
 }
 
-var phi = phiFunction(num)
+exports = phiFunction;
 
-
-console.log("phiFunction of %d: %d",num, phi.length);
-console.log("Reduced Residue System Modulo: ", phi.toString());
+if (!module.parent) {
+  var num = parseInt(process.argv[2]);
+  var phi = phiFunction(num)
+  console.log("phiFunction of %d: %d",num, phi.length);
+  console.log("Reduced Residue System Modulo: ", phi.join(', '));
+}

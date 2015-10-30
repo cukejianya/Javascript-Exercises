@@ -24,8 +24,8 @@ function gcd(a, b) {
 
 module.exports = gcd;
 
-if (process.argv[2] = 'run') {
-  a = parseInt(process.argv.slice(2));
-  b = parseInt(process.argv.slice(3));
+if (!module.parent) {
+  a = parseInt(process.argv[2]);
+  b = parseInt(process.argv[3]);
   console.log(gcd(a, b));
 }

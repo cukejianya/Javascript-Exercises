@@ -21,9 +21,9 @@ var findAllPrimes = function(num) {
     return ret_ar;
 };
 
+exports = findAllPrimes;
 
-
-var num = process.argv.slice(2);
-//console.log(findAllPrimes(num));
-
-exports.findAllPrimes = findAllPrimes;
+if (!module.parent) {
+  var num = process.argv.slice(2);
+  console.log(findAllPrimes(num));
+}
