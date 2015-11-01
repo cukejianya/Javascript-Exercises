@@ -1,8 +1,10 @@
 function schoolWeeks(){
-	var current = new Date();
-	var startDate = new Date("January 26, 2015 00:00:00");
-	var deadline = new Date("May 12, 2015 00:00:00");
-	var x = current.getTime() - startDate.getTime();
+	var current, firstday, lastday, startDiff, endDiff, week, weeksLeft, daysLeft, schoolDaysLet;
+
+	current = new Date()
+	firstday = new Date("August 31, 2015");
+	lastday = new Date("December 12, 2015");
+	startDiff = current.getTime() - startDate.getTime();
 	var y = deadline.getTime() - current.getTime();
 	x = x * 1.15741e-8;
 	y = y * 1.15741e-8;
