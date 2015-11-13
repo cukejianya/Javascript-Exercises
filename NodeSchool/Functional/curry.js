@@ -1,21 +1,14 @@
 function curryN(fn, n) {
   n = n || fn.length;
-  return rec([], n, 0, fn);
+  return rec(fn, n-1);
 }
 
-function rec(fnArg, n, i, fn) {
-  if (n-i <= 0) return fn.apply(null, fnArg);
+function rec(fn, n) {
+  if (n <= 0) return fn.bind(null);
   return function () {
-    var arg = Array.prototype.slice.call(arguments);
-    fnArg = fnArg.splice(0,i).concat(arg);
-    return rec(fnArg, n, ++i, fn);
+    var arg = Array.prototype.slice.call(arguments)[0];
+    return rec(fn.bind(null, arg), n-1);
   }
 }
 
-function trampoline(fn) {
-  while(fn && fn  instanceof Function) {
-    fn = fn()
-  }
-  return fn;
-}
 module.exports = curryN
