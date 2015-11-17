@@ -10,7 +10,7 @@ function phiFunction(num) {
   return rrsModulo
 }
 
-exports = phiFunction;
+module.exports = phiFunction;
 
 if (!module.parent) {
   var num = parseInt(process.argv[2]);
