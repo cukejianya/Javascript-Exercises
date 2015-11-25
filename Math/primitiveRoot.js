@@ -22,6 +22,6 @@ module.exports = primitiveRoot;
 
 if (!module.parent) {
   var num = parseInt(process.argv[2]);
-  var roots = primitiveRoot(num).join(', ');
+  var roots = primitiveRoot(num).join(', ') || 'None';
   console.log('Primitive Root(s): '+roots);
 }
