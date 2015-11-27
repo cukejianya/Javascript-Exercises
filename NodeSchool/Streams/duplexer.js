@@ -3,6 +3,5 @@ var duplexer = require('duplexer2');
 
 module.exports = function (cmd, args) {
   var child = spawn(cmd, args);
-  var duplex = duplexer(child.stdin, child.stdout);
-  return duplex;
+  return child.stdout.pipe(process.stdout);
 };
