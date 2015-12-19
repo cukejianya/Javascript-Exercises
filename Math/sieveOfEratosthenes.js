@@ -1,4 +1,4 @@
-var findAllPrimes = function(num) {
+function findAllPrimes(num) {
 
     array = Array.apply(null, Array( Math.floor(num/2) ) ).map(
         function (_, i) {
@@ -21,7 +21,7 @@ var findAllPrimes = function(num) {
     return ret_ar;
 };
 
-exports = findAllPrimes;
+module.exports = findAllPrimes;
 
 if (!module.parent) {
   var num = process.argv.slice(2);

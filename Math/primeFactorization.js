@@ -19,9 +19,9 @@ function primeFactor(num) {
     return primeFactorList;
 }
 
-exports = primeFactor;
+module.exports = primeFactor;
 
 
-if (module.parent) {
+if (!module.parent) {
   console.log("Prime Factorization:",primeFactor(process.argv.slice(2)));
 }
