@@ -1,3 +1,4 @@
 var unique = require("./uniquely");
 
-unique()
+var str = prompt();
+console.log(unique(str))
