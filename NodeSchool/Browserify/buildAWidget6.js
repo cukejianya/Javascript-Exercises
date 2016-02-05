@@ -1,17 +1,17 @@
 var domify = require('domify');
 
 function Widget() {
-  this = that;
-  this.html = '<div>Hello <span class="name"></span>!</div>';
+  that = this;
+  this.html = domify('<div>Hello <span class="name"></span>!</div>');
 
   this.setName = function(str) {
-    var html = that.html.split('name')
-    that.html = html[0]+str+html[1]
+    that.html.querySelector(".name").textContent = str;
   }
 
-  this.append = function(target){
-    
+  this.appendTo = function(target){
+    target.appendChild(that.html);
   };
 
-  return new Widget();
 }
+
+module.exports = Widget
