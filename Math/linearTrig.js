@@ -18,4 +18,4 @@ function Coord(num) {
   }
 }
 
-Coord(3);
+Coord(1);
