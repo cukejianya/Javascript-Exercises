@@ -1,22 +1,20 @@
-let nextTodoId = 0
-export const addTodo = (text) => {
-  return {
-    type: 'ADD_TODO',
-    id: nextTodoId++,
-    text
-  }
-}
 
-export const setVisibilityFilter = (filter) => {
-  return {
-    type: 'SET_VISIBILITY_FILTER',
-    filter
-  }
-}
+export const addTodo = makeAction('ADD_TODO', 'id', 'text');
 
-export const toggleTode = (id) => {
-  return {
-    type: 'TOGGLE_TODO',
-    id
+export const setVisibilityFilter = makeAction(
+  'SET_VISIBILITY_FILTER',
+  'filter'
+);
+
+export const toggleTode = makeAction('TOGGLE_TODO', 'id');
+
+function makeAction (type, ...argsName) {
+  return (...args) => {
+    let action = {type}
+    argsName.forEach((arg, idx) => {
+      action[argsName[idx]] = args[idx]
+    })
+
+    return action
   }
 }

@@ -25,6 +25,7 @@ export const SearchBar = React.createClass ({
 
 export const ProductTable = React.createClass ({
   render () {
+    console.log(Object.util(this.props));
     const products = this.props.products;
     const rows = [];
     let currentCategory;

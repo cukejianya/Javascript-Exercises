@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const Todo = ({ onClick, complete, text }) => (
+const Todo = ({ onClick, completed, text }) => (
   <li
     onClick={onClick}
     style={ {

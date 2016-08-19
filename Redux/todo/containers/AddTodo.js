@@ -12,7 +12,7 @@ let AddTodo = ({ dispatch }) => {
         if (!input.value.trim()) {
           return
         }
-        dispatch(addTodo(input.value))
+        dispatch(addTodo(increment(), input.value))
         input.value = ''
       }}>
         <input ref={node => {
@@ -26,5 +26,10 @@ let AddTodo = ({ dispatch }) => {
   )
 }
 AddTodo = connect()(AddTodo)
+
+const increment = (() => {
+  let idx = 0
+  return () => idx++
+})()
 
 export default AddTodo
